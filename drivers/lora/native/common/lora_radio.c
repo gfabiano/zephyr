@@ -131,11 +131,10 @@ static int lora_radio_rx_arm(const struct device *dev, uint32_t timeout_ms)
 
 static void lora_radio_rx_restart(const struct device *dev)
 {
-	struct lora_radio_data *data = dev->data;
 	int ret;
 
 	ret = lora_radio_rx_arm(dev, 0);
-	if (ret < 0 && data->op == LORA_RADIO_OP_RX_DUTY_CYCLE) {
+	if (ret < 0) {
 		lora_radio_op_end(dev, ret);
 	}
 }
